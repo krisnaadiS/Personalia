@@ -1,0 +1,228 @@
+﻿<UserControl x:Class="PersonaliaLPDKuta.Pages.PositionPage.PositionPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PersonaliaLPDKuta.Pages.PositionPage"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:util="clr-namespace:PersonaliaLPDKuta.Utilities"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:PositionPageViewModel x:Key="ViewModel"/>
+        <util:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <util:ValueConverterGroup x:Key="InvertedBooleanToVisibilityConverter">
+            <util:InvertedBooleanConverter/>
+            <util:BooleanToVisibilityConverter/>
+        </util:ValueConverterGroup>
+    </UserControl.Resources>
+    <Grid Background="White"
+          DataContext="{StaticResource ViewModel}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="180"/>
+        </Grid.ColumnDefinitions>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical"
+                            Margin="10 10 5 10">
+                    <telerik:RadWatermarkTextBox
+                        IsEnabled="{Binding IsChanging}"
+                        Text="{Binding Position.RankName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        WatermarkContent="Nama Kepangkatan"
+                        WatermarkBehavior="HideOnTextEntered"
+                        Margin="0 0 0 5"/>
+                    <telerik:RadWatermarkTextBox
+                        Text="{Binding Position.PositionName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        IsEnabled="{Binding IsChanging}"
+                        WatermarkContent="Nama Jabatan"
+                        WatermarkBehavior="HideOnTextEntered"
+                        Margin="0 0 0 5"/>
+                    <telerik:RadNumericUpDown 
+                        IsEnabled="{Binding IsChanging}"
+                        ShowButtons="False"
+                        HideTrailingZeros="True"
+                        NullValue="Nilai Tunjangan"
+                        Value="{Binding Position.NilaiTunjangan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        HorizontalContentAlignment="Left"
+                        Minimum="0"
+                        UpdateValueEvent="PropertyChanged"
+                        IsInteger="True"
+                        Margin="0 0 0 5"/>
+                </StackPanel>
+            </Grid>
+            <telerik:RadGridView
+                Margin="10 0 10 10"
+                AutoGenerateColumns="False"
+                ItemsSource="{Binding Positions}"
+                SelectedItem="{Binding OldPosition, Mode=TwoWay}"
+                GroupRenderMode="Flat"
+                SelectionMode="Single"
+                SelectionUnit="FullRow"
+                CanUserResizeColumns="False"
+                Grid.Row="1"
+                x:Name="gridView"
+                IsReadOnly="True"
+                CanUserInsertRows="false"
+                IsFilteringAllowed="False"
+                RowIndicatorVisibility="Collapsed"
+                ShowGroupPanel="False"
+                CanUserFreezeColumns="False">
+
+                <telerik:RadGridView.Columns>
+                    <util:RowNumberColumn 
+                        Header="No" 
+                        Width="80"
+                        IsReadOnly="True"/>
+                    <telerik:GridViewDataColumn 
+                        Header="Nama Kepangkatan"
+                        Width="5*"
+                        DataMemberBinding="{Binding RankName}" />
+                    <telerik:GridViewDataColumn 
+                        Header="Nama Jabatan"
+                        Width="4*"
+                        DataMemberBinding="{Binding PositionName}" />
+                    <telerik:GridViewDataColumn 
+                        Header="Nilai Tunjangan"
+                        Width="4*"
+                        DataMemberBinding="{Binding NilaiTunjangan, StringFormat=Rp. {0:N0}}" />
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </Grid>
+
+        <Grid Background="{telerik:FluentResource ResourceKey=AccentBrush}"
+              Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="KEPANGKATAN DAN JABATAN"
+                       TextWrapping="Wrap"
+                       Foreground="White"
+                       FontSize="16"
+                       TextAlignment="Center"
+                       Margin="0 50 0 50"
+                       Grid.Row="0"/>
+
+            <Grid Grid.Row="1"
+                  Margin="20 0"
+                  Visibility="{Binding IsChanging, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <telerik:RadButton Foreground="White"
+                                   Grid.Row="0"
+                                   Command="{Binding SideButtonCommand}"
+                                   CommandParameter="{x:Static local:SideButton.Save}">
+                    <ContentControl.Content>
+                        <Grid>
+                            <fa:FontAwesome Icon="Check"
+                                            FrameworkElement.HorizontalAlignment="Left"
+                                            FrameworkElement.VerticalAlignment="Center" />
+                            <TextBlock TextBlock.Text="SIMPAN"
+                                       FrameworkElement.Width="120"
+                                       FrameworkElement.VerticalAlignment="Center"
+                                       TextBlock.TextAlignment="Center" />
+                        </Grid>
+                    </ContentControl.Content>
+                </telerik:RadButton>
+                <telerik:RadButton Foreground="White"
+                                   Grid.Row="1"
+                                   Margin="0 10"
+                                   Command="{Binding SideButtonCommand}"
+                                   CommandParameter="{x:Static local:SideButton.Cancel}">
+                    <ContentControl.Content>
+                        <Grid>
+                            <fa:FontAwesome Icon="Times"
+                                            FrameworkElement.HorizontalAlignment="Left"
+                                            FrameworkElement.VerticalAlignment="Center" />
+                            <TextBlock TextBlock.Text="BATALKAN"
+                                       FrameworkElement.Width="120"
+                                       FrameworkElement.VerticalAlignment="Center"
+                                       TextBlock.TextAlignment="Center" />
+                        </Grid>
+                    </ContentControl.Content>
+                </telerik:RadButton>
+            </Grid>
+
+            <Grid Grid.Row="1"
+                  Margin="20 0"
+                  Visibility="{Binding IsChanging, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <telerik:RadButton Foreground="White"
+                                   Grid.Row="0"
+                                   Command="{Binding SideButtonCommand}"
+                                   CommandParameter="{x:Static local:SideButton.Add}">
+                    <ContentControl.Content>
+                        <Grid>
+                            <fa:FontAwesome Icon="Plus"
+                                            FrameworkElement.HorizontalAlignment="Left"
+                                            FrameworkElement.VerticalAlignment="Center" />
+                            <TextBlock TextBlock.Text="BARU"
+                                       FrameworkElement.Width="120"
+                                       FrameworkElement.VerticalAlignment="Center"
+                                       TextBlock.TextAlignment="Center" />
+                        </Grid>
+                    </ContentControl.Content>
+                </telerik:RadButton>
+                <telerik:RadButton Foreground="White"
+                                   Grid.Row="1"
+                                   Margin="0 10"
+                                   Command="{Binding SideButtonCommand}"
+                                   IsEnabled="{Binding IsSelected}"
+                                   CommandParameter="{x:Static local:SideButton.Edit}">
+                    <ContentControl.Content>
+                        <Grid>
+                            <fa:FontAwesome Icon="PencilSquareOutline"
+                                            FrameworkElement.HorizontalAlignment="Left"
+                                            FrameworkElement.VerticalAlignment="Center" />
+                            <TextBlock TextBlock.Text="UBAH"
+                                       FrameworkElement.Width="120"
+                                       FrameworkElement.VerticalAlignment="Center"
+                                       TextBlock.TextAlignment="Center" />
+                        </Grid>
+                    </ContentControl.Content>
+                </telerik:RadButton>
+                <telerik:RadButton Foreground="White"
+                                   Grid.Row="2"
+                                   IsEnabled="{Binding IsSelected}"
+                                   Command="{Binding SideButtonCommand}"
+                                   CommandParameter="{x:Static local:SideButton.Delete}">
+                    <ContentControl.Content>
+                        <Grid>
+                            <fa:FontAwesome Icon="TrashOutline"
+                                            FrameworkElement.HorizontalAlignment="Left"
+                                            FrameworkElement.VerticalAlignment="Center" />
+                            <TextBlock TextBlock.Text="HAPUS"
+                                       FrameworkElement.Width="120"
+                                       FrameworkElement.VerticalAlignment="Center"
+                                       TextBlock.TextAlignment="Center" />
+                        </Grid>
+                    </ContentControl.Content>
+                </telerik:RadButton>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,317 @@
+﻿<UserControl x:Class="PersonaliaLPDKuta.MainMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:mat="clr-namespace:Telerik.Windows.Controls.MaterialControls;assembly=Telerik.Windows.Controls"
+             xmlns:local="clr-namespace:PersonaliaLPDKuta"
+             mc:Ignorable="d" 
+             d:DesignHeight="700">
+    <UserControl.Resources>
+        <local:MainMenuViewModel x:Key="ViewModel"/>
+    </UserControl.Resources>
+    <Grid Width="170" DataContext="{StaticResource ViewModel}">
+        <mat:Shadow Background="White" ShadowDepth="Depth2"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image Margin="5 10" VerticalAlignment="Center" Stretch="Uniform" Height="120"
+                   Source="Images/logolpd.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <telerik:RadPanelBar Grid.Row="1" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                <telerik:RadPanelBarItem Command="{Binding DashboardCommand}"
+                                         Style="{StaticResource RadPanelBarItemStyle}">
+                    <telerik:RadPanelBarItem.Header>
+                        <Grid Margin="5 0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <fa:FontAwesome Icon="Dashboard" VerticalAlignment="Center" 
+                                            Margin="0,0,6,0"/>
+                            <TextBlock Text="Dashboard" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                        </Grid>
+                    </telerik:RadPanelBarItem.Header>
+                </telerik:RadPanelBarItem>
+
+                <telerik:RadPanelBarItem >
+                    <telerik:RadPanelBarItem.Header>
+                        <Grid Margin="5 0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <fa:FontAwesome Icon="Database" VerticalAlignment="Center" 
+                                            Margin="0,0,6,0"/>
+                            <TextBlock Text="Data Master" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                        </Grid>
+                    </telerik:RadPanelBarItem.Header>
+
+                    <telerik:RadPanelBarItem Command="{Binding ChangeCommand}"
+                                             CommandParameter="{x:Static local:Page.Employee}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Pegawai" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+                    <telerik:RadPanelBarItem Command="{Binding ChangeCommand}"
+                                             CommandParameter="{x:Static local:Page.Family}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Data Keluarga" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+                    <telerik:RadPanelBarItem Command="{Binding ChangeCommand}"
+                                             CommandParameter="{x:Static local:Page.Position}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Tabel Jabatan dan Kepangkatan" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+                    <telerik:RadPanelBarItem Command="{Binding ChangeCommand}"
+                                             CommandParameter="{x:Static local:Page.Banjar}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Tabel Banjar" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+                </telerik:RadPanelBarItem>
+                <telerik:RadPanelBarItem >
+                    <telerik:RadPanelBarItem.Header>
+                        <Grid Margin="5 0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <fa:FontAwesome Icon="Book" VerticalAlignment="Center" 
+                                            Margin="0,0,6,0"/>
+                            <TextBlock Text="Data Riwayat" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                        </Grid>
+                    </telerik:RadPanelBarItem.Header>
+
+                    <telerik:RadPanelBarItem Command="{Binding StockCommand}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Riwayat Pendidikan" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+
+                    <telerik:RadPanelBarItem Command="{Binding SupplierCommand}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Riwayat Jabatan dan Kepangkatan" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+
+                    <telerik:RadPanelBarItem Command="{Binding PurchaseOrderCommand}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Riwayat Pelatihan/Seminar" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                                </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+
+                </telerik:RadPanelBarItem>
+
+                <telerik:RadPanelBarItem>
+                    <telerik:RadPanelBarItem.Header>
+                        <Grid Margin="5 0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <fa:FontAwesome Icon="Money" VerticalAlignment="Center" 
+                                            Margin="0,0,6,0"/>
+                            <TextBlock Text="Data Transaksi" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                        </Grid>
+                    </telerik:RadPanelBarItem.Header>
+
+                    <telerik:RadPanelBarItem Command="{Binding SaleCommand}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Kasbon" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+                    <telerik:RadPanelBarItem Command="{Binding CreditCommand}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Input Absensi" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+                    <telerik:RadPanelBarItem Command="{Binding OnlineSaleCommand}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Input Gaji" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+                </telerik:RadPanelBarItem>
+
+                <telerik:RadPanelBarItem>
+                    <telerik:RadPanelBarItem.Header>
+                        <Grid Margin="5 0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <fa:FontAwesome Icon="File" VerticalAlignment="Center" 
+                                            Margin="0,0,6,0"/>
+                            <TextBlock Text="Laporan" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                        </Grid>
+                    </telerik:RadPanelBarItem.Header>
+
+                    <telerik:RadPanelBarItem Command="{Binding ReportSaleCommand}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Laporan Masa Kerja" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+                    <telerik:RadPanelBarItem Command="{Binding ReportTransactionCommand}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Laporan Data Pegawai" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+                    <telerik:RadPanelBarItem Command="{Binding ActivityLogCommand}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Laporan Kasbon" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+                    <telerik:RadPanelBarItem Command="{Binding ActivityLogCommand}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Laporan Absensi" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+                    <telerik:RadPanelBarItem Command="{Binding ActivityLogCommand}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Laporan Slip Gaji" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+                    <telerik:RadPanelBarItem Command="{Binding ActivityLogCommand}">
+                        <telerik:RadPanelBarItem.Header>
+                            <Grid Margin="5 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:FontAwesome Icon="Circle" VerticalAlignment="Center" 
+                                                Margin="0,0,6,0"/>
+                                <TextBlock Text="Laporan Harian Pekerjaan Pegawai" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1"/>
+                            </Grid>
+                        </telerik:RadPanelBarItem.Header>
+                    </telerik:RadPanelBarItem>
+                </telerik:RadPanelBarItem>
+            </telerik:RadPanelBar>
+        </Grid>
+    </Grid>
+</UserControl>

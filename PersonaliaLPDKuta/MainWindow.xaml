@@ -1,0 +1,24 @@
+﻿<Window x:Class="PersonaliaLPDKuta.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:local="clr-namespace:PersonaliaLPDKuta"
+        mc:Ignorable="d"
+        Title="Personalia LPD Kuta"
+        Foreground="#939393"
+        VerticalAlignment="Stretch"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        MinWidth="1366"
+        MinHeight="768">
+    <Grid>
+        <telerik:RadBusyIndicator x:Name="busyIndicator" IsIndeterminate="True"
+                                  IsBusy="False">
+            <Grid x:Name="gridContent">
+
+            </Grid>
+        </telerik:RadBusyIndicator>
+    </Grid>
+</Window>
